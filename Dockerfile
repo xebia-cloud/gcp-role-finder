@@ -30,12 +30,13 @@ COPY --from=1 /home/role-finder /home/role-finder
 
 
 COPY --from=0 /app/website/dist /app/website/dist
-COPY --from=1 /app/data /data
-COPY --from=1 /app/role-finder /
+COPY --from=1 /app/data /app/data
+COPY --from=1 /app/role-finder /app/
 
 USER role-finder
 
+WORKDIR /app
 
 EXPOSE 8080
-ENTRYPOINT ["/role-finder"]
+ENTRYPOINT ["/app/role-finder"]
 CMD ["serve", "--from-file"]
