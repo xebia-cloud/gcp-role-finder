@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY website/ website/
 
-RUN cd  website && yarn
-RUN cd  website && yarn build
+RUN cd  website && yarn --network-timeout 100000
+RUN cd  website && yarn --network-timeout 100000 build 
 
 
 FROM 		golang:1.21-alpine
