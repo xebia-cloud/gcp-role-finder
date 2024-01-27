@@ -3,9 +3,9 @@ package cmd
 import (
 	"context"
 	"os"
-	"xebia-gcloud/gcp-role-finder/internal"
-	"xebia-gcloud/gcp-role-finder/internal/storage/fs"
-	"xebia-gcloud/gcp-role-finder/internal/storage/gcp"
+	"xebia-cloud/gcp-role-finder/internal"
+	"xebia-cloud/gcp-role-finder/internal/storage/fs"
+	"xebia-cloud/gcp-role-finder/internal/storage/gcp"
 
 	"github.com/binxio/gcloudconfig"
 	"github.com/spf13/cobra"
@@ -16,8 +16,8 @@ var roleRepository internal.RoleRepository
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gcp-least-privileged-role-finder",
-	Short: "Find the appropriate Google Cloud Platform iam role",
+	Use:   "gcp-role-finder",
+	Short: "Explore the appropriate Google Cloud Platform IAM roles",
 	Long:  ``,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) (err error) {
 		parents, _ := cmd.PersistentFlags().GetStringSlice("parents")

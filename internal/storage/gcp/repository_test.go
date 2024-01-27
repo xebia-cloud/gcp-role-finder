@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
-	"xebia-gcloud/gcp-role-finder/internal/storage/fs"
+	"xebia-cloud/gcp-role-finder/internal/storage/fs"
 
 	"golang.org/x/oauth2/google"
 )

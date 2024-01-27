@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"testing"
-	"xebia-gcloud/gcp-role-finder/internal"
+	"xebia-cloud/gcp-role-finder/internal"
 )
 
 func Test_repository_GetRoles(t *testing.T) {

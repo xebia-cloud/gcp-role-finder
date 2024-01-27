@@ -4,7 +4,7 @@ Copyright © 2024 Xebia Netherlands B.V
 package cmd
 
 import (
-	"xebia-gcloud/gcp-role-finder/internal/storage/fs"
+	"xebia-cloud/gcp-role-finder/internal/storage/fs"
 
 	"github.com/spf13/cobra"
 )
@@ -13,8 +13,7 @@ import (
 var downloadCmd = &cobra.Command{
 	Use:   "download",
 	Short: "downloads all GCP IAM roles",
-	Long: `saves the latest IAM role definitions into a file.
-
+	Long: `the latest IAM role definitions into a file.
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		roles, err := roleRepository.GetRoles(cmd.Context())

@@ -7,8 +7,8 @@ import (
 	"log/slog"
 	"strings"
 	"sync"
-	"xebia-gcloud/gcp-role-finder/internal"
-	"xebia-gcloud/gcp-role-finder/internal/search/fulltext"
+	"xebia-cloud/gcp-role-finder/internal"
+	"xebia-cloud/gcp-role-finder/internal/search/fulltext"
 
 	"github.com/gofiber/fiber/v2"
 )

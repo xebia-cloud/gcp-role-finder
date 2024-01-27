@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log/slog"
 	"sort"
-	"xebia-gcloud/gcp-role-finder/internal"
+	"xebia-cloud/gcp-role-finder/internal"
 
 	"github.com/blevesearch/bleve"
 )

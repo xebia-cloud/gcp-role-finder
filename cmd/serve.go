@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"fmt"
+	"log/slog"
 	"time"
-	"xebia-gcloud/gcp-role-finder/internal/handlers"
+	"xebia-cloud/gcp-role-finder/internal/handlers"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -17,10 +18,9 @@ import (
 
 var serveCmd = &cobra.Command{
 	Use:   "serve",
-	Short: "serves the Google Cloud Platform IAM roles query service",
+	Short: "web UI for searching through Google Cloud Platform IAM roles",
 	Long: `
-Provides an quick an easy user interface to find the Google Cloud Platform
-IAM role with the least number of permissions.
+Provides a quick an easy user interface to search the Google Cloud Platform IAM roles.
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx := cmd.Context()
@@ -36,7 +36,10 @@ IAM role with the least number of permissions.
 			return err
 		}
 
-		app := fiber.New()
+		app := fiber.New(fiber.Config{
+			AppName:               "GCP Role finder",
+			DisableStartupMessage: true,
+		})
 		app.Use(limiter.New(limiter.Config{
 			Max:               20,
 			Expiration:        3 * time.Second,
@@ -50,7 +53,9 @@ IAM role with the least number of permissions.
 		app.Get("/roles/:id", handler.GetRoleByID)
 		app.Get("/refresh", handler.Refresh)
 		app.Static("/", "./website/dist")
-		return app.Listen(fmt.Sprintf("%s:%d", host, port))
+		address := fmt.Sprintf("%s:%d", host, port)
+		slog.InfoContext(ctx, "listening", "address", address)
+		return app.Listen(address)
 	},
 }
 

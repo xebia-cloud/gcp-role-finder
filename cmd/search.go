@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"os"
 	"strings"
-	"xebia-gcloud/gcp-role-finder/internal/search/fulltext"
+	"xebia-cloud/gcp-role-finder/internal/search/fulltext"
 
 	"github.com/spf13/cobra"
 )
@@ -18,8 +18,9 @@ var searchCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Short: "for roles with the specified IAM permission",
 	Long: `
-prints the roles with the desired IAM permission, the role
-with the least permissions first.
+searches for the roles with the desired IAM permission, the role with the least permissions first.
+
+The command line arguments provide a fulltext search query. 
 
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {

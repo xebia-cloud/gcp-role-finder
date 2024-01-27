@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"os"
 	"path"
-	"xebia-gcloud/gcp-role-finder/internal"
+	"xebia-cloud/gcp-role-finder/internal"
 )
 
 type repository struct {
