@@ -67,7 +67,7 @@ resource "google_storage_bucket_object" "roles" {
   content      = file(format("%s/../data/roles.json", path.module))
 }
 
-resource "google_storage_bucket_iam_binding" "owners" {
+resource "google_storage_bucket_iam_binding" "role-cache-object-users" {
   bucket = google_storage_bucket.role-cache.name
   role   = "roles/storage.objectUser"
   members = [
