@@ -17,7 +17,7 @@ ADD         go.mod go.sum  /app/
 RUN         go mod download
 
 ADD         . /app/
-RUN	        CGO_ENABLED=0 GOOS=linux go build -ldflags '-extldflags "-static"' -o role-finder .
+RUN	        CGO_ENABLED=0 GOOS=linux go build -ldflags '-extldflags "-static"' -o gcp-role-finder .
 
 FROM 		scratch
 ARG		    VERSION
@@ -31,12 +31,12 @@ COPY --from=1 /home/role-finder /home/role-finder
 
 COPY --from=0 /app/website/dist /app/website/dist
 COPY --from=1 /app/data /app/data
-COPY --from=1 /app/role-finder /app/
+COPY --from=1 /app/gcp-role-finder /app/
 
 USER role-finder
 
 WORKDIR /app
 
 EXPOSE 8080
-ENTRYPOINT ["/app/role-finder"]
+ENTRYPOINT ["/app/gcp-role-finder"]
 CMD ["serve", "--from-file"]
