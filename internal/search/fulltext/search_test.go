@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"testing"
+
 	"xebia-cloud/gcp-role-finder/internal"
 )
 
@@ -12,8 +13,9 @@ func Test_repository_GetRoles(t *testing.T) {
 
 	roles := []*internal.Role{
 		{
-			base64.StdEncoding.EncodeToString([]byte("accessapproval.approver")),
+			base64.StdEncoding.EncodeToString([]byte("roles/accessapproval.approver")),
 			"accessapproval.approver",
+			"accessapproval",
 			"Access Approval Approver",
 			"Ability to view or act on access approval requests and view configuration",
 			[]string{
@@ -48,7 +50,7 @@ func Test_repository_GetRoles(t *testing.T) {
 		t.Error("expected a single result")
 	}
 
-	searcher, err = NewSearcher(ctx, WithExcludedRoles([]string{"accessapproval.approver"}))
+	searcher, err = NewSearcher(ctx, WithExcludedRoles([]string{"roles/accessapproval.approver"}))
 	if err != nil {
 		t.Error(err)
 	}

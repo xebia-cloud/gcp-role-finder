@@ -12,6 +12,7 @@ import (
 type Role struct {
 	ID                  string   `json:"id"`
 	Name                string   `json:"name"`
+	Service             string   `json:"service"`
 	Title               string   `json:"title"`
 	Description         string   `json:"description"`
 	IncludedPermissions []string `json:"includedPermissions"`
@@ -28,9 +29,11 @@ func NewRole(
 	stage string,
 	etag string,
 ) *Role {
+	roleNameParts := strings.Split(strings.TrimPrefix(name, "roles/"), ".")
 	return &Role{
 		ID:                  base64.StdEncoding.EncodeToString([]byte(name)),
 		Name:                name,
+		Service:             roleNameParts[0],
 		Title:               title,
 		Description:         description,
 		IncludedPermissions: includedPermissions,

@@ -21,13 +21,12 @@ export const RoleList = () => (
 
     <List
         filters={orderFilters}
-        bulkActionButtons={false}
-        sort={{ field: 'permissionCount', order: 'DESC' }}
+        sort={{ field: 'permissionCount', order: 'ASC' }}
         actions={<PostListActions />}
     >
-
-        <Datagrid rowClick="show">
+        <Datagrid bulkActionButtons={false} rowClick="show">
             <TextField label="Role" source="name" />
+            <TextField source="service" />
             <TextField source="title" />
             <TextField source="description" />
             <TextField source="stage" />

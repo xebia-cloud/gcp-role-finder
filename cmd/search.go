@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"os"
 	"strings"
+
 	"xebia-cloud/gcp-role-finder/internal/search/fulltext"
 
 	"github.com/spf13/cobra"
