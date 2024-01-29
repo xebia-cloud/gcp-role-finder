@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"strings"
 	"sync"
+
 	"xebia-cloud/gcp-role-finder/internal"
 	"xebia-cloud/gcp-role-finder/internal/search/fulltext"
 
@@ -49,10 +50,6 @@ func (s *RoleHandler) RefreshRoles(ctx context.Context) error {
 	s.mutex.Unlock()
 
 	return nil
-}
-
-func (s *RoleHandler) Refresh(c *fiber.Ctx) error {
-	return s.RefreshRoles(c.Context())
 }
 
 func (s *RoleHandler) List(c *fiber.Ctx) error {
