@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
+
 	"xebia-cloud/gcp-role-finder/internal"
 )
 

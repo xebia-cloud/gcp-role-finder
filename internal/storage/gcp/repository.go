@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+
 	"xebia-cloud/gcp-role-finder/internal"
 
 	"golang.org/x/oauth2"

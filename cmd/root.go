@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"os"
+
 	"xebia-cloud/gcp-role-finder/internal"
 	"xebia-cloud/gcp-role-finder/internal/storage/fs"
 	"xebia-cloud/gcp-role-finder/internal/storage/gcp"

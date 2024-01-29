@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"os"
 	"path"
+
 	"xebia-cloud/gcp-role-finder/internal"
 )
 
