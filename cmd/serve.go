@@ -7,6 +7,9 @@ import (
 	"fmt"
 	"log/slog"
 	"time"
+
+	"github.com/imjasonh/gcpslog"
+
 	"xebia-cloud/gcp-role-finder/internal/handlers"
 
 	"github.com/gofiber/fiber/v2"
@@ -22,6 +25,10 @@ var serveCmd = &cobra.Command{
 	Long: `
 Provides a quick an easy user interface to search the Google Cloud Platform IAM roles.
 `,
+	PreRun: func(cmd *cobra.Command, args []string) {
+		slog.SetDefault(slog.New(gcpslog.NewHandler()))
+	},
+
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx := cmd.Context()
 		host, _ := cmd.Flags().GetString("host")
@@ -51,7 +58,6 @@ Provides a quick an easy user interface to search the Google Cloud Platform IAM 
 		}))
 		app.Get("/roles", handler.List)
 		app.Get("/roles/:id", handler.GetRoleByID)
-		app.Get("/refresh", handler.Refresh)
 		app.Static("/", "./website/dist")
 		address := fmt.Sprintf("%s:%d", host, port)
 		slog.InfoContext(ctx, "listening", "address", address)
